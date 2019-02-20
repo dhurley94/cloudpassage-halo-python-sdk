@@ -169,7 +169,7 @@ class Scan(object):
         request = HttpHelper(self.session)
         response = request.get(endpoint)
         return response
-
+    
     def scan_details(self, scan_id):
         """Get detailed scan information
 
@@ -180,10 +180,11 @@ class Scan(object):
             dict: Dictionary object describing scan details
 
         """
-
-        endpoint = "/v1/scans/%s" % scan_id
+        endpoint = "/v1/servers/%s/commands/%s" %(self, scan_id)
+        #endpoint = "/v1/scans/%s" % scan_id
         request = HttpHelper(self.session)
-        return request.get(endpoint)["scan"]
+        #print(request)
+        return request.get(endpoint)["command"]
 
     def scan_status_supported(self, scan_status):
         """Determine if scan status is supported for query"""
